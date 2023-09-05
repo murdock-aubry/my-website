@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+    <html>
+    <body style="background-color:rgb(35, 35, 35);">
+    </body>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <head>
+    <title>projects/torus</title>
+    </head>
+    <head>
+        <style>
+    
+    
+        div.a {
+            text-align: center;
+        }
+    
+        div.b {
+            text-align: left;
+        }
+    
+        div.c {
+            text-align: right;
+        }
+    
+        div.boxed {
+            background-color: rgb(0, 0, 0);
+            border: 1px solid rgb(255, 255, 255);
+            padding: 5px;
+            margin: 10px;
+        }
+
+        div.boxed1 {
+            background-color: rgb(0, 0, 0);
+            border: 3px solid rgb(255, 255, 255);
+            padding: 5px;
+            margin: 10px;
+        }
+
+        div.width {
+            max-width: 100%;
+            margin: auto;
+            border: 3px solid #000000
+        }
+
+
+        div.width2 {
+            max-width: 800px;
+            margin: auto;
+            padding: 10;
+            border: 3px solid rgb(35, 35, 35)
+        }
+
+        
+    
+        
+    
+    
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background-color: rgb(0, 0, 0);
+        }
+    
+    
+        
+        li {
+          float: right;
+        }
+        
+        li a {
+          display: block;
+          color: white;
+          text-align: bottom;
+          padding: 10px 16px;
+          text-decoration: none;
+        }
+        
+        li a:hover:not(.active) {
+          background-color: rgb(0, 0, 0);
+        }
+        
+        .active {
+          background-color: #000000;
+        }
+       
+
+        
+
+        
+        </style>
+        </head>
+        <body>
+
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS_HTML">
+                MathJax.Hub.Config({
+                    tex2jax: {
+                        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],},
+                    TeX: {equationNumbers: {
+                        autoNumber: "AMS"
+                      },Augment: {  Definitions: {
+                       macros: {
+                         overbracket:  ['UnderOver','23B4',1],
+                         underbracket: ['UnderOver','23B5',1],
+                       }
+                     }}},
+                });
+            </script>
+
+        
+    
+        <!-- Navigation bar -->
+        <div class = "width">
+            <ul>        
+                <li 
+                    style = "float:left"> 
+                    <h1 style = "color:rgb(255, 255, 255);"> 
+                        &nbsp;  Murdock Aubry
+                    </h1>
+                </li>
+                
+                <li>
+                    <a 
+                        class="active" href="../courses.html">
+                        <div class = "boxed" style = "width: 66px;">
+                            Courses
+                        </div> 
+                        &nbsp;
+                    </a>
+                </li>
+      
+                <li>
+                    <a 
+                        class="active" href="../projects.html">
+                        <div class = "boxed1" style = "width: 65px;">
+                            Projects
+                        </div> 
+                        &nbsp;
+                    </a>
+                </li>
+      
+                <li>
+                    <a 
+                        class="active" href="../academia.html">
+                        <div class = "boxed" style = "width: 76px;">
+                            Academia
+                        </div>
+                    </a>
+                </li>
+                
+                <li>
+                    <a 
+                        class="active" 
+                        href="../index.html">
+                        <div class = "boxed" style = "width: 53px;">
+                            Home
+                        </div>
+                    </a>
+                </li>
+            </ul>
+       
+        </div>
+
+        
+
+        <!--
+  Created by Victor Ivrii on 2018-09-01.
+  Copyright (c) 2018 University of Toronto. All rights reserved.
+    -->
+
+
+<!-- <link href="http://www.math.toronto.edu/courses/mat244h1/20181/markdown.css" rel="stylesheet"></link> -->
+
+
+
+
+<div class = "width2">
+
+    <div class = "b">
+
+        <div class = "text" style = "color: #ffffff;">
+
+            <h3>Tutorial 1 (Week 2)</h3>
+
+            We begin by introducing the following pieces of notation:
+            \begin{align*}
+                [f] = \begin{pmatrix} f(x_{1, k}) \\ f(x_{2, k}) \\ \vdots \\ f(x_{k, k}) \end{pmatrix} && \text{diag}(\vec{v}) = \begin{pmatrix} v_1 & 0 & \cdots & 0 \\ 0 & v_2 & \dots & 0 \\ \vdots & \, & \ddots & \vdots \\ 0 & 0 & \cdots & v_n \end{pmatrix} 
+            \end{align*}
+            where the collection $\{x_{i, k}\}_{i=1}^k$ is the $k-$point Chebyshev quadrature constructed on an interval $(a, b)$ and $\vec{v}\in \mathbb{F}^n$ is a vector of length $n$.
+
+            
+
+            <!-- <h4>Part A (section 2.1) </h4>
+            In each of those Problems
+
+            <ol type=a>
+            <li>Draw a direction field for the given differential equation.
+            <li>Based on an inspection of the direction field, describe how solutions behave for large $t$.
+            <li> Find the general solution of the given differential equation, and use it to determine how
+            solutions behave as $t\to \infty$.</ol>
+            <ol>
+            <li value=2> $y'-2y = t^2e^{2t}$ and also find the solution with initial condition $y(0)=0$, and also find the solution with initial condition $y(0)=1$.
+            <li value=4> $y' + y/t =3\cos (2t)$
+            <br>
+            and and also find the solution with initial condition $y(1)=0$, and also find the solution with initial condition $y(1)=1$.
+            </ol>
+            <h4>Part B (Section 2.2)</h4>
+
+            In each of those Problems
+            <ol type=>
+            <li> Find the solution of the given initial value problem in explicit form.
+            <li>  Plot the graph of the solution.
+            <li> Determine (at least approximately) the interval in which the solution is defined.
+            </ol>
+            <ol>
+            <li value=10> $y'=\frac{1-2x}{y}$, $y(1)=-2$;
+            <li value=16> $y'= \frac{x(x^2+1)}{4y^3}$,  $y(0)=-\frac{1}{\sqrt{2}}$;
+            <li value=33> $y'=\frac{4y-3x}{2x-y}$.
+            </ol> -->
+
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+          
+
+
+        
+
+        </body>
+</html>

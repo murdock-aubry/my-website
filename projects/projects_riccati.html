@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+    <html>
+    <body style="background-color:rgb(35, 35, 35);">
+    </body>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <head>
+    <title>projects/riccati</title>
+    </head>
+    <head>
+        <style>
+    
+    
+        div.a {
+            text-align: center;
+        }
+    
+        div.b {
+            text-align: left;
+        }
+    
+        div.c {
+            text-align: right;
+        }
+    
+        div.boxed {
+            background-color: rgb(0, 0, 0);
+            border: 1px solid rgb(255, 255, 255);
+            padding: 5px;
+            margin: 10px;
+        }
+
+        div.boxed1 {
+            background-color: rgb(0, 0, 0);
+            border: 3px solid rgb(255, 255, 255);
+            padding: 5px;
+            margin: 10px;
+        }
+
+        div.width {
+            max-width: 100%;
+            margin: auto;
+            border: 3px solid #000000
+        }
+
+        div.width2 {
+            max-width: 800px;
+            margin: auto;
+            padding: 10;
+            border: 3px solid rgb(35, 35, 35)
+        }
+
+        
+    
+        
+    
+    
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background-color: rgb(0, 0, 0);
+        }
+    
+    
+        
+        li {
+          float: right;
+        }
+        
+        li a {
+          display: block;
+          color: white;
+          text-align: bottom;
+          padding: 10px 16px;
+          text-decoration: none;
+        }
+        
+        li a:hover:not(.active) {
+          background-color: rgb(0, 0, 0);
+        }
+        
+        .active {
+          background-color: #000000;
+        }
+        </style>
+        </head>
+        <body>
+
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS_HTML">
+                MathJax.Hub.Config({
+                    tex2jax: {
+                        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],},
+                    TeX: {equationNumbers: {
+                        autoNumber: "AMS"
+                      },Augment: {  Definitions: {
+                       macros: {
+                         overbracket:  ['UnderOver','23B4',1],
+                         underbracket: ['UnderOver','23B5',1],
+                       }
+                     }}},
+                });
+            </script>
+    
+        <!-- Navigation bar -->
+        <div class = "width">
+            <ul>        
+                <li 
+                    style = "float:left"> 
+                    <h1 style = "color:rgb(255, 255, 255);"> 
+                        &nbsp;  Murdock Aubry
+                    </h1>
+                </li>
+                
+                <li>
+                    <a 
+                        class="active" href="../courses.html">
+                        <div class = "boxed" style = "width: 66px;">
+                            Courses
+                        </div> 
+                        &nbsp;
+                    </a>
+                </li>
+      
+                <li>
+                    <a 
+                        class="active" href="../projects.html">
+                        <div class = "boxed1" style = "width: 65px;">
+                            Projects
+                        </div> 
+                        &nbsp;
+                    </a>
+                </li>
+      
+                <li>
+                    <a 
+                        class="active" href="../academia.html">
+                        <div class = "boxed" style = "width: 76px;">
+                            Academia
+                        </div>
+                    </a>
+                </li>
+                
+                <li>
+                    <a 
+                        class="active" 
+                        href="../index.html">
+                        <div class = "boxed" style = "width: 53px;">
+                            Home
+                        </div>
+                    </a>
+                </li>
+            </ul>
+      
+              
+              
+          </div>
+
+
+          <div class = "width2">
+
+            <div class = "b">
+        
+                <div class = "text" style = "color: #ffffff;">
+
+
+                    <h3>What's the goal?<hr></h3>
+                    
+
+                    The is a note which decribes methods used numerically evaluate a basis of the solution space
+                    of $n^{th}$ order scalar equations of the form
+                    \begin{equation}
+                        q_0(t)y(t) + \sum_{i=1}^nq_i(t) y^{(i)}(t) = 0
+                        \label{riccati:eq1}
+                    \end{equation}
+                    using an adaptive algorithm known as the Levin method. 
+        
+                    
+                    For a description of the algorithm for the low-dimensional case, please read the algorithm descriptions
+                    in this 
+                    <a href="levin_riccati.pdf">
+                        paper.
+                    </a>
+                    Please ensure a sufficient understanding of the material convered in this paper before proceeding. 
+
+                    <h3>Discretizing the Riccati Equation <hr></h3>
+
+                    The $n^{\text{th}}$ derivative chain rule of the composition of functions $f\circ g$ is provided by the following formula:
+                    
+                    \begin{equation}
+                        \frac{d^n}{dx^n}f(g(x)) = \sum_S A_{m_1, \ldots, m_n} f^{(m_1 + \cdots + m_n)}(g(x)) \prod_{j=1}^n(g^{(j)}(x))^{m_j},
+                        \label{chain n}
+                    \end{equation}
+                    where the sum is taken over the collection $S$ of all sequences $(m_1, \ldots, m_n)$ such that
+                    \begin{equation}
+                        m_1 + 2m_2 + \ldots + nm_n = \sum_{i=1}^n im_i = n
+                        \label{summation1}    
+                    \end{equation}
+                    and
+                    \begin{equation}
+                        A_{m_1, \ldots, m_n} = \frac{n!}{m_1!(1!)^{m_1}\cdot m_2!(2!)^{m_2} \cdots m_n!(n!)^{m_n}}
+                        \label{coefficients}
+                    \end{equation}
+                    Substituting $f(t) = \exp(t)$ and $g(t) = \int r(t)dt$, we obtain
+                    \begin{equation}
+                        \frac{d^n}{dx^n}\exp\left(\int r(t)dt \right) = \exp\left(\int r(t)dt \right) \sum_S A_{m_1, \ldots, m_n} \prod_{j=1}^n(r^{(j-1)}(x))^{m_j}
+                        \label{chain n2}
+                    \end{equation}
+                    Therefore, the $n^{\text{th}}$ order Riccati equation for the $n^{\text{th}}$ order equation
+                    \begin{equation}
+                        y^{(n)}(t) + k^nq(t)y(t) = 0
+                        \label{helmholtz}
+                    \end{equation}
+                    is given by
+                    \begin{equation}
+                        \sum_S A_{m_1, \ldots, m_n} \prod_{j=1}^n(r^{(j-1)})^{m_j} + k^nq = 0
+                        \label{riccati1}
+                    \end{equation}
+                    Deploying Newton's method via perturbation by a function of small magnitude $\delta$;
+                    \begin{equation}
+                        r_{n+1}(t) = r_n(t) + \delta(t)
+                        \label{perturb}
+                    \end{equation}
+                    we wish to find (\ref{chain n}) in the case where $g(t) = \int (r(t) + \delta(t))dt$. A direct substitution of (\ref{perturb}) into (\ref{chain n}) yields
+                    \begin{equation}
+                        \frac{d^n}{dx^n}\exp\left(\int (r(t) + \delta(t))dt \right) = \exp\left(\int (r(t) + \delta(t))dt \right) \sum_S A_{m_1, \ldots, m_n} \prod_{j=1}^n(r^{(j-1)} + \delta^{(j-1)})^{m_j}
+                        \label{chain n3}
+                    \end{equation}
+                    and so the linearized Riccati equation becomes
+                    \begin{equation}
+                        \sum_S A_{m_1, \ldots, m_n} \prod_{j=1}^n(r^{(j-1)} + \delta^{(j-1)})^{m_j} + k^nq = 0
+                        \label{riccati2}
+                    \end{equation}
+                    The binomial series provides
+                    \begin{equation}
+                        (r^{(j-1)} + \delta^{(j-1)})^{m_j} = \sum_{k=0}^{m_j} \begin{pmatrix} m_j \\ k \end{pmatrix}(r^{(j-1)})^{m_j - k}(\delta^{(j-1)})^k.
+                        \label{binomial1}
+                    \end{equation}
+                    For all $i_1, i_2, j_1, j_2 \geq 1$, we make the assumption that $(\delta^{(i_1)})^{j_1}(\delta^{(i_2)})^{j_2} \approx 0$ and thus we only consider the terms $k = 0, 1$ in (\ref{binomial1}), yielding the following
+                    \begin{equation}
+                        (r^{(j-1)} + \delta^{(j-1)})^{m_j} \approx (r^{(j-1)})^{m_j} + m_j(r^{(j-1)})^{m_j - 1}\delta^{(j-1)} 
+                        \label{binomial2}
+                    \end{equation}
+                    Further, under the assumption $b_ib_j \approx 0$ for all $i, j$, we have
+                    \begin{equation}
+                        \prod_{i=1}^n(a_i + b_i) \approx \prod_{i=1}^n a_i + \sum_j b_j\left(\prod_{i=1, i\neq j}^n a_i \right)
+                        \label{sum of prod}
+                    \end{equation}
+                    Therefore, utilizing (\ref{binomial2}) and (\ref{sum of prod}), we obtain
+                    \begin{equation}
+                        \prod_{j=1}^n(r^{(j-1)} + \delta^{(j-1)})^{m_j} \approx \prod_{j=1}^n (r^{(j-1)})^{m_j} + \sum_{j=1}^nm_j(r^{(j-1)})^{m_j - 1}\delta^{(j-1)}\left[\prod_{i=1, i\neq j}^n(r^{(i-1)})^{m_i} \right]
+                    \end{equation}
+                    Plugging this into the linearized Riccati equation (\ref{riccati2}), we obtain
+                    \begin{equation}
+                            \sum_S A_{m_1, \ldots, m_n} \left(\prod_{j=1}^n (r^{(j-1)})^{m_j} + \sum_{j=1}^nm_j(r^{(j-1)})^{m_j - 1}\delta^{(j-1)}\left[\prod_{i=1, i\neq j}^n(r^{(i-1)})^{m_i} \right]\right) + k^nq = 0
+                    \end{equation}
+
+                    \begin{equation}
+                        \implies \boxed{\sum_{j=1}^n\left(\sum_Sm_j A_{m_1, \ldots, m_n}(r^{(j-1)})^{m_j - 1}\left[\prod_{i=1, i\neq j}^n(r^{(i-1)})^{m_i}\right]\right)\delta^{(j-1)} = - \sum_S A_{m_1, \ldots, m_n}\prod_{j=1}^n(r^{(j-1)})^{m_j} - k^nq}
+                    \end{equation}
+        
+
+
+                    <h3>Fortran Implementation <hr></h3>
+
+
+                    <h3>Experimentation <hr></h3>
+        
+                </div>
+            </div>
+        
+        </div>
+
+
+        <br><br><br><br><br>
+
+
+        
+
+        </body>
+</html>

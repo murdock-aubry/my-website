@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+    <html>
+    <body style="background-color:rgb(35, 35, 35);">
+    </body>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <head>
+    <title>projects/elipsoid</title>
+    </head>
+    <head>
+        <style>
+    
+    
+        div.a {
+            text-align: center;
+        }
+    
+        div.b {
+            text-align: left;
+        }
+    
+        div.c {
+            text-align: right;
+        }
+    
+        div.boxed {
+            background-color: rgb(0, 0, 0);
+            border: 1px solid rgb(255, 255, 255);
+            padding: 5px;
+            margin: 10px;
+        }
+
+        div.boxed1 {
+            background-color: rgb(0, 0, 0);
+            border: 3px solid rgb(255, 255, 255);
+            padding: 5px;
+            margin: 10px;
+        }
+
+        div.width {
+            max-width: 100%;
+            margin: auto;
+            border: 3px solid #000000
+        }
+
+        div.width2 {
+            max-width: 800px;
+            margin: auto;
+            padding: 10;
+            border: 3px solid rgb(35, 35, 35)
+        }
+
+        
+    
+        
+    
+    
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background-color: rgb(0, 0, 0);
+        }
+    
+    
+        
+        li {
+          float: right;
+        }
+        
+        li a {
+          display: block;
+          color: white;
+          text-align: bottom;
+          padding: 10px 16px;
+          text-decoration: none;
+        }
+        
+        li a:hover:not(.active) {
+          background-color: rgb(0, 0, 0);
+        }
+        
+        .active {
+          background-color: #000000;
+        }
+        </style>
+        </head>
+        <body>
+
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS_HTML">
+                MathJax.Hub.Config({
+                    tex2jax: {
+                        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],},
+                    TeX: {equationNumbers: {
+                        autoNumber: "AMS"
+                      },Augment: {  Definitions: {
+                       macros: {
+                         overbracket:  ['UnderOver','23B4',1],
+                         underbracket: ['UnderOver','23B5',1],
+                       }
+                     }}},
+                });
+            </script>
+    
+        <!-- Navigation bar -->
+        <div class = "width">
+            <ul>        
+                <li 
+                    style = "float:left"> 
+                    <h1 style = "color:rgb(255, 255, 255);"> 
+                        &nbsp;  Murdock Aubry
+                    </h1>
+                </li>
+                
+                <li>
+                    <a 
+                        class="active" href="../courses.html">
+                        <div class = "boxed" style = "width: 66px;">
+                            Courses
+                        </div> 
+                        &nbsp;
+                    </a>
+                </li>
+      
+                <li>
+                    <a 
+                        class="active" href="../projects.html">
+                        <div class = "boxed1" style = "width: 65px;">
+                            Projects
+                        </div> 
+                        &nbsp;
+                    </a>
+                </li>
+      
+                <li>
+                    <a 
+                        class="active" href="../academia.html">
+                        <div class = "boxed" style = "width: 76px;">
+                            Academia
+                        </div>
+                    </a>
+                </li>
+                
+                <li>
+                    <a 
+                        class="active" 
+                        href="../index.html">
+                        <div class = "boxed" style = "width: 53px;">
+                            Home
+                        </div>
+                    </a>
+                </li>
+            </ul>      
+        </div>
+
+        <div class = "width2" style = "color: #ffffff;">
+
+        <br><br>
+
+        <h2>Problem.</h2>
+
+
+        The following problem has been taken from Landau and Lifshitz's Mechanics, 3rd edition, and was given as a problem set question in PHY354. The solution can be extremely shorttened through a simple application 
+        of Euler's Angles, however the more interest task is completing the problem without the use of such methods. The question is stated, verbatim, as follows:
+        <br><br>
+        a) Find the kinetic energy of a homogenous ellipsoid which rotates about one of it's axes while that axis itself rotates about a line $CD$ perpendicular to it and passing through the centre of the ellipsoid.
+        <br><br>
+        b) The same as part a), but for the case where the axis $AB$  is notm perpendicular to $CD$ and is an axis of symmetry of the ellipsoid.
+        <br><br>
+        All of the diagrams in this solution have been constructed using AutoCAD.
+
+        <h3>Part a)</h3>
+        The ellipsoid orbits around the line AB with angular frequency $\dot{\varphi}$, while the line AB orbits about the line CD with angular frequency $\dot{\theta}$. This is shown in Figure 1. Initially, the principal axes $x_1, x_2, x_3$ are oriented as shown in the left hand side of Figure 1. The right side of Figure 1 shows the orientation of the ellipse at some time later. The rotational kinetic energy of the system is given by;
+        \[T_{rot} = \frac{1}{2}\sum_{i, j}\Omega_iI_{ij}\Omega_j = \frac{1}{2}(\Omega_1^2I_1 + \Omega_2^2I_2 + \Omega_3^3I_3) \tag{1}\]
+        when we are in the principal axis basis, where $I_j$ are the principal moments of inertia about $\Omega_j$ are the angular frequency of the system about each principal axis. Note that since the principal axis $x_3$ is oriented along $AB$ initially, it will always lie along this axis of rotation. Hence the component angular frequency $\Omega_3$ is simply given by $\Omega_3 = \dot{\varphi}$. To find the $\Omega_1, \Omega_2$ components, we must project the principal axes $x_1, x_2$ onto the axis of rotation CD, and then multiply by the rotational frequency of the system about that axis (namely, $\dot{\theta}$). This provides,
+        \begin{align*}
+            \Omega_1 = \dot{\theta}\cos\varphi && \Omega_2 = \dot{\theta}\cos(\pi/2 - \varphi) = \dot{\theta}\sin\varphi
+        \end{align*}
+        Plugging this into Eq.(1), we obtain
+        \[T_{rot} = \frac{\dot{\theta}^2}{2}(I_1\cos^2\varphi + I_2\sin^2\varphi + I_3)\]
+
+
+        <div class="image">
+            <img src="../Images/ellipse2.JPG" alt="" width="100%"/>
+        </div>
+
+        <h3>Part b)</h3>
+        Similar to part a), the rotational kinetic energy of the system is given by 
+        \[T_{rot} = \frac{1}{2}(\Omega_1^2I_1 + \Omega_2^2I_2 + \Omega_3^3I_3)\]
+        Since the axis AB is an axis of symmetry, the semi-major axes of the ellipsoid along $x_1$ and $x_2$ must be equal in magnitude, hence implying that $I_1 = I_2$. Thus,
+        \[T_{rot} = \frac{I_1}{2}(\Omega_1^2 + \Omega_2^2) + \frac{1}{2}\Omega_3^3I_3 \tag{2}\]
+        The system is depicted in Figure 2, where $\alpha$ is the angle at which the ellipsoid is rotated. It is useful to visualize special cases; consider the case where $\dot{\varphi} = 0$. Then to obtain $\Omega_1, \Omega_2$, we simply project the principal axes $x_1, x_2$ onto the axis of rotation CD, and multiply by the angular frequency, $\dot{\theta}$, about that axis. Namely, we would have $\Omega_1 = \dot{\theta}\cos\alpha$ and $\Omega_2 = \dot{\theta}\sin\alpha$, just as in part \textbf{3.9}. Now allowing the system to rotate about about $AB$ ($\dot{\varphi} \neq 0$), we simply project the principal axis onto the axis of rotation CD, and multiply by the angular frequency about that axis. Namely;
+        \begin{align*}
+            \Omega_1 = \dot{\theta}\cos\alpha\cos\varphi && \Omega_2 = \dot{\theta}\cos\alpha\sin\varphi
+        \end{align*}
+        This is extremely similar to part a), except we must add additional projection to account for the rotation of magnitude $\alpha$. To compute $\Omega_3$, we once again imagine the case where $\varphi = 0$. Then the principal axis $x_3$ rotates about CD with angular frequency $\dot{\theta}$, while $x_3$ makes an angle $\alpha$ with the line normal to CD. The magnitude of the component of the unit principal axis $x_3$ which is parallel to the axis of rotation $CD$ is then simply $\sin\alpha$. To obtain $\Omega_3$ in this case we simply multiply this value by the angular frequency of the body about the axis of rotation CD: $\Omega_3 = \dot{\theta}\sin\alpha$. Now consider separately the case where $\dot{\theta} = 0$ but $\dot{\varphi} \neq 0$. Then $\Omega_3$ is as given as in \textbf{3.9}; the rotational velocity of the body about the principal axis $x_3$ is simply $\Omega_3 = \dot{\varphi}$. Now allowing both $\dot{\theta}, \dot{\varphi}$ to be non-zero, we simply superpose both of the previous discussions:
+        \[\Omega_3 =\dot{\varphi} + \dot{\theta}\sin\alpha\]
+        Plugging all of these values into Eq.(2), we obtain
+        \[T_{rot} = \frac{I_1\dot{\theta}^2\cos^2\alpha}{2} + \frac{I_3}{2}(\dot{\varphi} + \dot{\theta}\sin\alpha)^2\]
+
+        <div class="image">
+            <img src="../Images/ellipse3.JPG" alt="" width="100%"/>
+        </div>
+
+        <br><br><br><br><br>
+
+        </div>
+
+
+        
+
+        </body>
+</html>

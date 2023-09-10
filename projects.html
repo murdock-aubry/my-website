@@ -111,6 +111,70 @@
         .active {
           background-color: #000000;
         }
+
+
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(0, 0, 0);
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            height: 100%;
+        }
+
+        .card-text {
+            font-size: 1.5rem;
+            letter-spacing: 0.1rem;
+            line-height: 1.25;
+            color: #ffffff;
+            margin-bottom: 2rem;
+        }
+
+        .container {
+            padding: 2px 16px;
+            height: 100%;
+        }
+
+
+
+
+        .grid {
+            display: grid;
+            grid-gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+            align-items: start;
+        }
+
+        .grid-item {
+            background-color: #fff;
+            border-radius: 0.4rem;
+            overflow: hidden;
+            box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: 0.2s;
+            height: 100%;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-0.5%);
+            box-shadow: 0 4rem 8rem rgba(0, 0, 0, 0.5);
+        }
+
+
+
+
+
+
+
+
+
+
+
         </style>
         </head>
         <body>
@@ -170,7 +234,9 @@
 
         </body>
 
-            <div class="width2">
+
+
+             <div class="width2">
 
                 <h1 style = "color: #ffffff;"> Projects</h1>
                 <p style = "color: #ffffff; font-size: 17px;">
@@ -189,196 +255,200 @@
                     
                 
                 <br><br>
-               
 
                 
-                
-                <!-- First row -->
-                <div class="row">
-                    <div class="col-md-4" style = "border:3px rgb(0, 0, 0)">
-                        <div class="thumbnail">
-                            <a style = "color:rgb(0, 0, 0);" href="projects/projects_riccati.html">
-                            <img src="Images/riccati1.JPG" alt="Lights" style ="border: 4px solid rgb(35, 35, 35)";>
-                            <div class="caption" style ="width: 100%;">
-                                <h3>
-                                    The Riccati Equation
-                                </h3>
-                            </a>
-                                <p>
-                                    This project entails the numerical evaluation of high dimensional
-                                    scalar ordinary differential equations.
-                                </p>
-                                &nbsp;
-                                &nbsp;
-                                &nbsp;
-                                &nbsp;
-                                <p>Fortran</p>
-                            </div>    
-                        </div>
-                    </div>
+                <div class = "grid">
 
-                    <div class="col-md-4" style = "border:3px rgb(0, 0, 0)">
-                        <div class="thumbnail" style = "height: 100%;">
+                    <div class = "grid-item">
+                        <div class="card">
                             <a style = "color:rgb(0, 0, 0);" href="https://github.com/murdockaubry">
-                            <img src="Images/DUNE.JPG" alt="Lights" style ="border: 4px solid rgb(35, 35, 35)";>
-                            <div class="caption" style ="width: 100%; height: 185px;">
-                                <h3>
-                                    Detection of Tau Neutrinos
-                                </h3>
+                                <img src="Images/DUNE.JPG" alt="dune" style="width:100%; height: 58%">
                             </a>
-                                <p>
-                                    An ongoing project focued on optimizing machine learning algorithms to determine 
-                                    the sensitivity of the DUNE detector to detect tau neutrinos. 
-                                </p>
-                                &nbsp;
-                                &nbsp;
-                                &nbsp;
-                                <p>PyTorch, ML, Numpy</p>
-                            </div>    
+
+                                <div class="container" style = "width: 100%">
+                                    <a style = "color:rgb(0, 0, 0);" href="https://github.com/murdockaubry">
+                                        <h4 style = 'color:rgb(255, 255, 255)'><b>Detection of Tau Neutrinos</b></h4> 
+                                    </a>
+
+                                    <div class = "card-text">
+                                        An ongoing project focued on optimizing machine learning algorithms to determine 
+                                        the sensitivity of the DUNE detector to detect tau neutrinos. 
+                                    </div> 
+                            
+                                </div>
                         </div>
                     </div>
 
-                    <div class="col-md-4" style = "border:3px rgb(0, 0, 0)">
-                        <div class="thumbnail">
+                    
+                    <div class="grid-item">
+                        <div class="card">
+                            <a style = "color:rgb(0, 0, 0);" href="projects/projects_riccati.html">
+                                <img src="Images/riccati1.JPG" alt="riccati1" style="width:100%">
+                            </a>
+                                <div class="container" style = "width: 100%">
+                                    <a style = "color:rgb(0, 0, 0);" href="projects/projects_riccati.html">
+                                        <h4 style = 'color:rgb(255, 255, 255)'><b>Scalar Equations</b></h4> 
+                                    </a>
+
+                                    <div class = "card-text">
+                                        This project entails the numerical evaluation of high dimensional
+                                        scalar ordinary differential equations.
+                                    </div> 
+                            
+                                </div>
+                        </div>
+                    </div>
+
+                    
+
+
+                    <div class="grid-item">
+                        <div class="card">
                             <a style = "color:rgb(0, 0, 0);" href="projects/projects_elipsoid.html">
-                            <img src="Images/euler1.JPG" alt="Lights" style="border: 4px solid rgb(35, 35, 35)">
-                            <div class="caption" style ="width: 100%;">
-                                <h3>
-                                    Euler Angles
-                                </h3>
+                                <img src="Images/euler1.JPG" alt="euler" style="width:100%">
                             </a>
-                                <p>
-                                    This problem is taken from Landau and Lifshitz' <em>Mechanics</em>. It 
-                                    involes using Euler angles to model the mechanics of a rotating elipsoid.
-                                </p>
-                                <p>AutoCAD</p>
-                            </div>    
+
+                                <div class="container" style = "width: 100%">
+                                    <a style = "color:rgb(0, 0, 0);" href="projects/projects_elipsoid.html">
+                                        <h4 style = 'color:rgb(255, 255, 255)'><b>Euler Angles</b></h4> 
+                                    </a>
+
+                                    <div class = "card-text">
+                                        This problem is taken from Landau and Lifshitz' <em>Mechanics</em>. It 
+                                        involes using Euler angles to model the mechanics of a rotating elipsoid.
+                                    </div> 
+                            
+                            
+                                </div>
                         </div>
                     </div>
+
                 </div>
 
-
-                <!-- Second Row -->
-                <div class="row">
-
-                    <div class="col-md-4" style = "border:3px rgb(0, 0, 0)">
-                        <div class="thumbnail">
-                            <a style = "color:rgb(0, 0, 0);" href="pendulum_assignment.pdf">
-                            <img src="Images/pendulum.JPG" alt="Lights" style="border: 4px solid rgb(35, 35, 35)">
-                            <div class="caption" style ="width: 100%;">
-                                <h3>
-                                    The Simple Pendulum
-                                </h3>
-                            </a>
-                                <p>
-                                    This is my submission for the final project of PHY324. I construct, analyze, and model
-                                    the behaviour of a simple pendulum, both within and in the complement of the region 
-                                    on which the small-angle approximation remains valid.
-                                </p>
-                                <p>Tracker, Python, Statistical Regression</p>
-                            </div>    
-                        </div>
-                    </div>
-
-                    <div class="col-md-4" style = "border:3px rgb(0, 0, 0)">
-                        <div class="thumbnail" style = "height: 200%;">
-                            <a style = "color:rgb(0, 0, 0);" href="projects/projects_riccati.html">
-                            <img src="Images/levin_integral.JPG" alt="Lights" style ="border: 4px solid rgb(35, 35, 35)";>
-                            <div class="caption" style ="width: 100%;">
-                                <h3>
-                                    Adaptive Numerical Integration
-                                </h3>
-                            </a>
-                                <p>
-                                    This project entails the numerical evaluation of highly oscillatory, complex valued 
-                                    integrals over two-dimensional domains using an adaptive scheme implemented in 
-                                    Fortran 90.
-                                </p>
-                                &nbsp;
-                                &nbsp;
-                                &nbsp;
-                                &nbsp;
-                                <p>Fortran</p>
-                            </div>    
-                        </div>
-                    </div>
-
-                    <div class="col-md-4" style = "border:3px rgb(0, 0, 0); height: 40%;">
-                        <div class="thumbnail">
-                            <a style = "color:rgb(0, 0, 0);" href="projects/projects_torus.html">
-                            <img src="Images/torus1.JPG" alt="Lights" style= "border: 4px solid rgb(35, 35, 35)">
-                            <div class="caption" style ="width: 100%;height: 200px;" >
-                                <h3>
-                                    Vector Field on a Torus
-                                </h3>
-                            </a>
-                                <p>
-                                    This is the solution to a problem that I found particularly interesting
-                                    from the textbook used in MAT267
-
-                                </p>
-                                &nbsp;
-                                <!-- <p>&nbsp;</p> -->
-                                <p>Math3D</p>
-                            </div>    
-                        </div>
-                    </div>
-                </div>
+                <br><br>
 
 
+                <div class = "grid">
 
-                <!-- Third Row -->
-                <div class="row">
-                    <div class="col-md-4" style = "border:3px rgb(0, 0, 0)">
-                        <div class="thumbnail" style = "height: 100%;">
+                    <div class = "grid-item">
+                        <div class="card">
                             <a style = "color:rgb(0, 0, 0);" href="https://github.com/murdockaubry">
-                            <img src="Images/cooling.JPG" alt="Lights" style ="border: 4px solid rgb(35, 35, 35)";>
-                            <div class="caption" style ="width: 100%; height: 205px;">
-                                <h3>
-                                    Path Optimization
-                                </h3>
+                                <img src="Images/pendulum.JPG" alt="pendulum" style="width:100%">
                             </a>
-                                <p>
-                                    Code for computing the optimal path between an arbitrary set of points placed
-                                    in the real plane using a process call adiabatic cooling.
-                                </p>
-                                &nbsp;
-                                &nbsp;
-                                &nbsp;
-                                &nbsp;
-                                <p>Python</p>
-                            </div>    
+
+                                <div class="container" style = "width: 100%">
+                                    <a style = "color:rgb(0, 0, 0);" href="https://github.com/murdockaubry">
+                                        <h4 style = 'color:rgb(255, 255, 255)'><b>The Simple Pendulum</b></h4> 
+                                    </a>
+
+                                    <div class = "card-text">
+                                        This is my submission for the final project of PHY324. I construct, analyze, and model
+                                        the behaviour of a simple pendulum, both within and in the complement of the region 
+                                        on which the small-angle approximation remains valid.
+                                    </div> 
+                            
+                                </div>
                         </div>
                     </div>
-                
 
-                
-                    <div class="col-md-4" style = "border:3px rgb(0, 0, 0)">
-                        <div class="thumbnail">
-                            <a style = "color:rgb(0, 0, 0);" href="https://github.com/murdock-aubry/my-website">
-                            <img src="Images/website.JPG" alt="Lights" style="border: 4px solid rgb(35, 35, 35)">
-                            <div class="caption" style ="width: 100%; height: 190px;" >
-                                <h3>
-                                    This Website
-                                </h3>
+                    
+                    <div class="grid-item">
+                        <div class="card">
+                            <a style = "color:rgb(0, 0, 0);" href="projects/projects_riccati.html">
+                                <img src="Images/levin_integral.JPG" alt="riccati1" style="width:100%">
                             </a>
-                                <p>
-                                    This website's GitHub repository.
-                                </p>
-                                
-                                &nbsp;
-                                <p>&nbsp;</p>
+                                <div class="container" style = "width: 100%">
+                                    <a style = "color:rgb(0, 0, 0);" href="projects/projects_riccati.html">
+                                        <h4 style = 'color:rgb(255, 255, 255)'><b>Adaptive Numerical Integration</b></h4> 
+                                    </a>
 
-                                <!-- <p>&nbsp;</p> -->
-                                <p>HTML, Bootstrap, CSS, Latex</p>
-                            </div>    
+                                    <div class = "card-text">
+                                        This project entails the numerical evaluation of highly oscillatory, complex valued 
+                                        integrals over two-dimensional domains using an adaptive scheme implemented in 
+                                        Fortran 90.
+                                    </div> 
+                            
+                                </div>
+                        </div>
+                    </div>
+
+                    
+
+
+                    <div class="grid-item">
+                        <div class="card">
+                            <a style = "color:rgb(0, 0, 0);" href="projects/projects_torus.html">
+                                <img src="Images/torus1.JPG" alt="riccati1" style="width:100%">
+                            </a>
+
+                                <div class="container" style = "width: 100%">
+                                    <a style = "color:rgb(0, 0, 0);" href="projects/projects_torus.html">
+                                        <h4 style = 'color:rgb(255, 255, 255)'><b>Vector Field on a Torus</b></h4> 
+                                    </a>
+
+                                    <div class = "card-text">
+                                        This is the solution to a problem that I found particularly interesting
+                                        from the textbook used in MAT267
+                                    </div> 
+                            
+                            
+                                </div>
                         </div>
                     </div>
 
                 </div>
 
 
-            </div>
+
+                <br><br>
+
+
+                <div class = "grid">
+
+                    <div class = "grid-item">
+                        <div class="card">
+                            <a style = "color:rgb(0, 0, 0);" href="https://github.com/murdock-aubry">
+                                <img src="Images/cooling.JPG" alt="pendulum" style="width:100%">
+                            </a>
+
+                                <div class="container" style = "width: 100%">
+                                    <a style = "color:rgb(0, 0, 0);" href="https://github.com/murdock-aubry">
+                                        <h4 style = 'color:rgb(255, 255, 255)'><b>Path Optimization</b></h4> 
+                                    </a>
+
+                                    <div class = "card-text">
+                                        Code for computing the optimal path between an arbitrary set of points placed
+                                        in the real plane using a process call adiabatic cooling.
+                                    </div> 
+                            
+                                </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="grid-item">
+                        <div class="card">
+                            <a style = "color:rgb(0, 0, 0);" href="https://github.com/murdock-aubry/my-website">
+                                <img src="Images/website.JPG" alt="riccati1" style="width:100%">
+                            </a>
+                                <div class="container" style = "width: 100%">
+                                    <a style = "color:rgb(0, 0, 0);" href="https://github.com/murdock-aubry/my-website">
+                                        <h4 style = 'color:rgb(255, 255, 255)'><b>This website.</b></h4> 
+                                    </a>
+
+                                    <div class = "card-text">
+                                        This website's GitHub repository.
+                                    </div> 
+                            
+                                </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div> 
 
 
         </body>

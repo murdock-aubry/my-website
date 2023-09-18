@@ -55,6 +55,13 @@
             border: 3px solid rgb(35, 35, 35)
         }
 
+        div.width3 {
+            max-width: 800px;
+            margin: auto;
+            padding: 10;
+            border: 3px solid rgb(35, 35, 35)
+        }
+
         
     
         
@@ -89,6 +96,16 @@
         .active {
           background-color: #000000;
         }
+
+
+        pre code {
+            background-color: rgb(0, 0, 0);
+            border: 1px solid rgb(0, 0, 0);
+            display: block;
+            padding: 10px;
+        }
+
+
         </style>
         </head>
         <body>
@@ -108,6 +125,7 @@
                      }}},
                 });
             </script>
+            
     
         <!-- Navigation bar -->
         <div class = "width">
@@ -174,7 +192,7 @@
                     <h3>What's the goal?<hr></h3>
                     
 
-                    The is a note which decribes methods used numerically evaluate a basis of the solution space
+                    This is a note which decribes methods used to numerically evaluate a basis of the solution space
                     of $n^{th}$ order scalar equations of the form
                     \begin{equation}
                         q_0(t)y(t) + \sum_{i=1}^nq_i(t) y^{(i)}(t) = 0
@@ -183,7 +201,7 @@
                     using an adaptive algorithm known as the Levin method. 
         
                     
-                    For a description of the algorithm for the low-dimensional case, please read the algorithm descriptions
+                    For a description of the algorithm for small values of $n$, please read the algorithm descriptions
                     in this 
                     <a href="../levin_riccati.pdf">
                         paper.
@@ -264,11 +282,50 @@
 
                     \begin{equation}
                         \implies \boxed{\sum_{j=1}^n\left(\sum_Sm_j A_{m_1, \ldots, m_n}(r^{(j-1)})^{m_j - 1}\left[\prod_{i=1, i\neq j}^n(r^{(i-1)})^{m_i}\right]\right)\delta^{(j-1)} = - \sum_S A_{m_1, \ldots, m_n}\prod_{j=1}^n(r^{(j-1)})^{m_j} - k^nq}
+                        \label{final_riccati}
                     \end{equation}
         
 
 
                     <h3>Fortran Implementation <hr></h3>
+
+                    An implementation of the algorithm is provided under the $\texttt{scalar_levin_n}$ subroutine 
+                    <a href="https://github.com/murdock-aubry/n-dimensional-scalar/blob/main/scalar_n.f90">
+                        here.
+                    </a>
+                    The key piece of this algorithm is attributed to the discretization of (\ref{final_riccati}), given the values of the derivatives of $r$ at the discretization nodes. 
+                    The following block constructs the right hand side of (\ref{final_riccati});
+
+                    <br><br>
+
+                    
+                    <div class = "width3">
+                        <pre style = "background-color: #000000;">
+                            <code class="inlinecode" style = 'color:#ffffff; width: 100%'>
+                                <div class = "b">
+                                    rhs_sum = 0 ! Reset summation value every iteration
+                                    ! exterior sum
+                                    do i = 1, m
+                                        terms = sum_set(:, i)
+                                        prod = 1 ! Need to reset product value
+                                        ! Compute the product nested in sum on RHS
+                                        do j = 1, n
+                                            if (j == 1) then
+                                                prod = r ** sum_set(j, i)
+                                            else
+                                                prod = prod * (rps(j-1, :)) ** sum_set(j, i)
+                                            end if
+                                        end do
+                                        rhs_sum = rhs_sum + sum_coefs(i) * prod
+                                    end do
+
+                                    rhs = -rhs_sum - qs0 
+                                </div>
+                            </code>
+                        </pre>
+                    </div>
+                    
+
 
 
                     <h3>Experimentation <hr></h3>

@@ -55,13 +55,6 @@
             border: 3px solid rgb(35, 35, 35)
         }
 
-        div.width3 {
-            max-width: 800px;
-            margin: auto;
-            padding: 10;
-            border: 3px solid rgb(35, 35, 35)
-        }
-
         
     
         
@@ -289,47 +282,23 @@
 
                     <h3>Fortran Implementation <hr></h3>
 
-                    An implementation of the algorithm is provided under the $\texttt{scalar_levin_n}$ subroutine 
-                    <a href="https://github.com/murdock-aubry/n-dimensional-scalar/blob/main/scalar_n.f90">
-                        here.
-                    </a>
-                    The key piece of this algorithm is attributed to the discretization of (\ref{final_riccati}), given the values of the derivatives of $r$ at the discretization nodes. 
-                    The following block constructs the right hand side of (\ref{final_riccati});
-
-                    <br><br>
-
-                    
-                    <div class = "width3">
-                        <pre style = "background-color: #000000;">
-                            <code class="inlinecode" style = 'color:#ffffff; width: 100%'>
-                                <div class = "b">
-                                    rhs_sum = 0 ! Reset summation value every iteration
-                                    ! exterior sum
-                                    do i = 1, m
-                                        terms = sum_set(:, i)
-                                        prod = 1 ! Need to reset product value
-                                        ! Compute the product nested in sum on RHS
-                                        do j = 1, n
-                                            if (j == 1) then
-                                                prod = r ** sum_set(j, i)
-                                            else
-                                                prod = prod * (rps(j-1, :)) ** sum_set(j, i)
-                                            end if
-                                        end do
-                                        rhs_sum = rhs_sum + sum_coefs(i) * prod
-                                    end do
-
-                                    rhs = -rhs_sum - qs0 
-                                </div>
-                            </code>
-                        </pre>
-                    </div>
-                    
-
-
 
                     <h3>Experimentation <hr></h3>
-        
+
+                    The files which test this algorithm in the cases of $n = 2, 3, 4$, using the original algorithm as reference, can be found
+                    under the files 
+                    <a href="https://github.com/murdock-aubry/n-dimensional-scalar/blob/main/experiment2.f90">
+                        $\texttt{experiment2.f90}.$
+                    </a>
+                    and 
+                    <a href="https://github.com/murdock-aubry/n-dimensional-scalar/blob/main/experiment5.f90">
+                        $\texttt{experiment5.f90}$
+                    </a>.
+                    Conversely, 
+                    <a href="https://github.com/murdock-aubry/n-dimensional-scalar/blob/main/experiment_n.f90">
+                        $\texttt{experiment_n.f90}$
+                    </a>
+                    tests the algorithm for much higher values of $n$.
                 </div>
             </div>
         

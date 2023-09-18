@@ -55,6 +55,22 @@
             border: 3px solid rgb(35, 35, 35)
         }
 
+        div.width3 {
+<<<<<<< HEAD
+            max-width: 800px;
+=======
+            max-width: 500px;
+>>>>>>> 0488e5e0ae9872fe1a9e5cbdd469f0af6e346fbe
+            margin: auto;
+            padding: 10;
+            border: 3px solid rgb(35, 35, 35)
+        }
+
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 0488e5e0ae9872fe1a9e5cbdd469f0af6e346fbe
         
     
         
@@ -91,11 +107,20 @@
         }
 
 
+<<<<<<< HEAD
         pre code {
             background-color: rgb(0, 0, 0);
             border: 1px solid rgb(0, 0, 0);
             display: block;
             padding: 10px;
+=======
+        code {
+            background-color: rgb(0, 0, 0);
+            border: 1px solid rgb(0, 0, 0);
+            display: block;
+            padding: 0px;
+            
+>>>>>>> 0488e5e0ae9872fe1a9e5cbdd469f0af6e346fbe
         }
 
 
@@ -281,6 +306,100 @@
 
 
                     <h3>Fortran Implementation <hr></h3>
+
+                    An implementation of the algorithm is provided under the $\texttt{scalar_levin_n}$ subroutine 
+                    <a href="https://github.com/murdock-aubry/n-dimensional-scalar/blob/main/scalar_n.f90">
+                        here.
+                    </a>
+                    The key piece of this algorithm is attributed to the discretization of (\ref{final_riccati}), given the values of the derivatives of $r$ at the discretization nodes. 
+                    The following block constructs the right hand side of (\ref{final_riccati});
+
+                    <br><br>
+
+
+                    <div class = "width3">
+                    <pre style = "background-color: #000000; padding: 5px">
+                    <code class="codeblock" style = "color: #ffffff;">
+rhs_sum = 0 ! Reset summation value every iteration
+! exterior sum
+do i = 1, m
+    terms = sum_set(:, i)
+    prod = 1 ! Need to reset product value
+    ! Compute the product nested in sum on RHS
+    do j = 1, n
+        if (j == 1) then
+            prod = r ** sum_set(j, i)
+        else
+            prod = prod * (rps(j-1, :)) ** sum_set(j, i)
+        end if
+    end do
+    rhs_sum = rhs_sum + sum_coefs(i) * prod
+end do
+
+rhs = -rhs_sum - qs0 
+                    </code>
+                    </pre>
+                    </div>
+
+                    <br>
+
+                    Similarly, the following block constructs the more intricate left hand side of (\ref{final_riccati});
+
+                    <br><br>
+
+                    <div class = "width2">
+                        <pre style = "background-color: #000000; padding: 5px">
+                        <code class="codeblock" style = "color: #ffffff;">
+amatr = 0
+sum1 = 0
+
+! Contribute the first term with D^{(n-1)}
+amatr = dd ** (n - 1) * adiffs(:, :, n-1)
+! Contribute the final term where there is no differential matrix
+do j = 1, m 
+    prod = 1 ! Need to reset nested product
+    do k = 2, n
+        prod = prod * (rps(k-1, :) ** sum_set(k, j))
+    end do 
+    sum1 = sum1 + sum_set(1, j) * sum_coefs(j) * prod * (r ** (sum_set(1, j) - 1))
+end do
+do l = 1, kcheb
+    amatr(l, l) = amatr(l, l) + sum1(l)
+end do
+
+! Do all other terms
+
+do i = 2, n - 1 !outer sum 
+    sum1 = 0 
+    sum2 = 0 ! Need to reset inner summation 
+    do j = 1, m !second sum
+        prod = 1 ! Need to reset nested product
+        do k = 1, n !nested product
+            if (k == i) then
+                prod = prod ! This is the term we don't consider, map via identity
+            else 
+                if (k == 1) then
+                    prod = prod * r ** sum_set(k, j)
+                else 
+                    prod = prod * (rps(k-1, :)) ** sum_set(k, j) 
+                end if
+            end if
+        end do
+        sum1 = sum1 + sum_set(i, j) * sum_coefs(j) * (rps(i-1,:)) ** (sum_set(i, j)-1) * prod
+    end do
+    do l = 1, kcheb
+        amatr(l, :) = amatr(l, :) + sum1(l) * dd**(i-1) * adiffs(l, :, i-1) 
+    end do
+end do
+                        </code>
+                        </pre>
+                        </div>
+
+                        <br>
+
+                        Having discretized (\ref{final_riccati}), we have obtained a solvable system of the form $A[\delta] = [\texttt{rhs}]$.
+                        Numerically inverting the constructed matrix $A$, the values of the perturbation function $\delta$ are thus determined
+                        at the quadrature nodes.
 
 
                     <h3>Experimentation <hr></h3>

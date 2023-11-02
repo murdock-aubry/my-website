@@ -234,11 +234,15 @@
                         <br><br>
                     </div>
 
-                    Integrals of the form (\ref{integral1}) are evaluated using an adaptive algorithm known as the Levin method. This work was originally implemented for the one-dimensional analog by James Bremer and Kirill Serk in their 2022
+                    Integrals of the form (\ref{integral1}) are evaluated using an adaptive algorithm known as the Levin method. This work was originally implemented for the one-dimensional analog by James Bremer and Kirill Serkh in their 2022
                     <a href="https://arxiv.org/abs/2211.13400#:~:text=The%20Levin%20method%20is%20a,an%20antiderivative%20of%20the%20integrand.">
                         paper
                     </a>
-                    on the adaptive Levin method. 
+                    on the adaptive Levin method. See 
+                    <a href="../levin2d.pdf">
+                        here
+                    </a>
+                    For a brief analysis of the case where the function $g$ takes on complex values rather than vector values.
 
                     <h3>Legendre Expansion Manipulation <hr></h3>
 
@@ -250,6 +254,8 @@
                     \begin{equation}
                         S_n = \big\{(i, j) \in [n]^2: i+j \leq m \text{ where } m = n \text{ if } i \text{ is even and } m=n+1 \text{ if } i \text{ is odd }\big\}
                     \end{equation}
+
+
 
                     <!-- <h3>Fortran Implementation <hr></h3>
 

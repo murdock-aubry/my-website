@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+    <html>
+    <body style="background-color:rgb(35, 35, 35);">
+    </body>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <head>
+    <title>projects/levin2d</title>
+    </head>
+    <head>
+        <style>
+    
+    
+        div.a {
+            text-align: center;
+        }
+    
+        div.b {
+            text-align: left;
+        }
+    
+        div.c {
+            text-align: right;
+        }
+    
+        div.boxed {
+            background-color: rgb(0, 0, 0);
+            border: 1px solid rgb(255, 255, 255);
+            padding: 5px;
+            margin: 10px;
+        }
+
+        div.boxed1 {
+            background-color: rgb(0, 0, 0);
+            border: 3px solid rgb(255, 255, 255);
+            padding: 5px;
+            margin: 10px;
+        }
+
+        div.width {
+            max-width: 100%;
+            margin: auto;
+            border: 3px solid #000000
+        }
+
+        div.width2 {
+            max-width: 800px;
+            margin: auto;
+            padding: 10;
+            border: 3px solid rgb(35, 35, 35)
+        }
+
+        div.width3 {
+            max-width: 500px;
+            margin: auto;
+            padding: 10;
+            border: 3px solid rgb(35, 35, 35)
+        }
+
+        div.width4 {
+            max-width: 700px;
+            margin: auto;
+            padding: 10;
+            border: 3px solid rgb(35, 35, 35)
+        }
+
+
+
+        
+    
+        
+    
+    
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background-color: rgb(0, 0, 0);
+        }
+    
+    
+        
+        li {
+          float: right;
+        }
+        
+        li a {
+          display: block;
+          color: white;
+          text-align: bottom;
+          padding: 10px 16px;
+          text-decoration: none;
+        }
+        
+        li a:hover:not(.active) {
+          background-color: rgb(0, 0, 0);
+        }
+        
+        .active {
+          background-color: #000000;
+        }
+
+
+        code {
+            background-color: rgb(0, 0, 0);
+            border: 1px solid rgb(0, 0, 0);
+            display: block;
+            padding: 0px;
+            
+        }
+
+
+        </style>
+        </head>
+        <body>
+
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS_HTML">
+                MathJax.Hub.Config({
+                    tex2jax: {
+                        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],},
+                    TeX: {equationNumbers: {
+                        autoNumber: "AMS"
+                      },Augment: {  Definitions: {
+                       macros: {
+                         overbracket:  ['UnderOver','23B4',1],
+                         underbracket: ['UnderOver','23B5',1],
+                       }
+                     }}},
+                });
+            </script>
+            
+    
+        <!-- Navigation bar -->
+        <div class = "width">
+            <ul>        
+                <li 
+                    style = "float:left"> 
+                    <h1 style = "color:rgb(255, 255, 255);"> 
+                        &nbsp;  Murdock Aubry
+                    </h1>
+                </li>
+                
+                <li>
+                    <a 
+                        class="active" href="../courses.html">
+                        <div class = "boxed" style = "width: 66px;">
+                            Courses
+                        </div> 
+                        &nbsp;
+                    </a>
+                </li>
+      
+                <li>
+                    <a 
+                        class="active" href="../projects.html">
+                        <div class = "boxed1" style = "width: 65px;">
+                            Projects
+                        </div> 
+                        &nbsp;
+                    </a>
+                </li>
+      
+                <li>
+                    <a 
+                        class="active" href="../academia.html">
+                        <div class = "boxed" style = "width: 76px;">
+                            Academia
+                        </div>
+                    </a>
+                </li>
+                
+                <li>
+                    <a 
+                        class="active" 
+                        href="../index.html">
+                        <div class = "boxed" style = "width: 53px;">
+                            Home
+                        </div>
+                    </a>
+                </li>
+            </ul>
+      
+              
+              
+          </div>
+
+
+          <div class = "width2">
+
+            <div class = "b">
+        
+                <div class = "text" style = "color: #ffffff;">
+
+                    <br>
+                    The github repository for this project can be found
+                    <a href="https://github.com/murdock-aubry/levin2d-step">
+                        here.
+                    </a>
+
+                    <br>
+
+
+                    <h3>What's the goal?<hr></h3>
+                    
+
+                    This note describes methods to efficiently evaluate integrals of the form
+                    \begin{equation}
+                        I = \int_R f(\vec{x})\,\exp(i\vec{\omega}\cdot \vec{g}(\vec{x}))d\vec{x}
+                        \label{integral1}    
+                    \end{equation}
+                    where 
+
+                    <div class = "width4">
+                        1. $R = [a, b]\times [c, d] \subset \mathbb{R}^2$ is a rectangle in the plane,
+
+                        <br><br>
+
+                        2. $f$ is a complex valued function on $R$,
+
+                        <br><br>
+
+                        3. $\vec{g}$ is a vector valued function on the $R$,
+
+                        <br> <br>
+
+                        4. $\vec{\omega} \in \mathbb{R}^2$, and typically chosen to be very large to ensure high frequency oscillations of the integrand.
+                        <br><br>
+                    </div>
+
+                    Integrals of the form (\ref{integral1}) are evaluated using an adaptive algorithm known as the Levin method. This work was originally implemented for the one-dimensional analog by James Bremer and Kirill Serk in their 2022
+                    <a href="https://arxiv.org/abs/2211.13400#:~:text=The%20Levin%20method%20is%20a,an%20antiderivative%20of%20the%20integrand.">
+                        paper
+                    </a>
+                    on the adaptive Levin method. 
+
+                    <h3>Legendre Expansion Manipulation <hr></h3>
+
+                    In order to evaluate integrals of the form (\ref{integral1}), we approximate the functions $f$ and $g$ using a finite linear combinations of normalized legendre polynomials:
+                    \begin{equation}
+                        f(x, y) = \sum_{(i, j) \in S_n} a_{ij} \tilde{P}_i(x) \tilde{P}_j(y)
+                    \end{equation}
+                    where the coefficients are complex constants $a_{ij}\in \mathbb{C}$, and the set of pairs indicies $S_n$ is given by
+                    \begin{equation}
+                        S_n = \big\{(i, j) \in [n]^2: i+j \leq m \text{ where } m = n \text{ if } i \text{ is even and } m=n+1 \text{ if } i \text{ is odd }\big\}
+                    \end{equation}
+
+                    <!-- <h3>Fortran Implementation <hr></h3>
+
+                    The github repository for this project can be found
+                    <a href="https://github.com/murdock-aubry/levin2d-step">
+                        here.
+                    </a> -->
+                    
+                    <br><br>
+
+
+                    <!-- <div class = "width3">
+                    <pre style = "background-color: #000000; padding: 5px">
+                    <code class="codeblock" style = "color: #ffffff;">
+rhs_sum = 0 ! Reset summation value every iteration
+! exterior sum
+do i = 1, m
+    terms = sum_set(:, i)
+    prod = 1 ! Need to reset product value
+    ! Compute the product nested in sum on RHS
+    do j = 1, n
+        if (j == 1) then
+            prod = r ** sum_set(j, i)
+        else
+            prod = prod * (rps(j-1, :)) ** sum_set(j, i)
+        end if
+    end do
+    rhs_sum = rhs_sum + sum_coefs(i) * prod
+end do
+
+rhs = -rhs_sum - qs0 
+                    </code>
+                    </pre>
+                    </div> -->
+
+                </div>
+            </div>
+        
+        </div>
+
+
+        <br><br><br><br><br>
+
+
+        
+
+        </body>
+</html>

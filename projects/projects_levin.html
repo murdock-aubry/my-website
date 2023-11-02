@@ -248,12 +248,45 @@
 
                     In order to evaluate integrals of the form (\ref{integral1}), we approximate the functions $f$ and $g$ using a finite linear combinations of normalized legendre polynomials:
                     \begin{equation}
-                        f(x, y) = \sum_{(i, j) \in S_n} a_{ij} \tilde{P}_i(x) \tilde{P}_j(y)
+                        f(x, y) = \sum_{(i, j) \in S_n} a_{i,j} \tilde{P}_i(x) \tilde{P}_j(y)
+                        \label{expansion}
                     \end{equation}
-                    where the coefficients are complex constants $a_{ij}\in \mathbb{C}$, and the set of pairs indicies $S_n$ is given by
+                    where the coefficients are complex constants $a_{i,j}\in \mathbb{C}$, and the set of pairs indicies $S_n$ is given by
                     \begin{equation}
                         S_n = \big\{(i, j) \in [n]^2: i+j \leq m \text{ where } m = n \text{ if } i \text{ is even and } m=n+1 \text{ if } i \text{ is odd }\big\}
                     \end{equation}
+                    which is a set of length $N = \frac{(n+1)(n+2)}{2} + \lceil \frac{n}{2} \rceil$. Noting that the derivatives of (non-normalized) Legendre polynomials satisfy the relation
+                    \begin{equation}
+                        \frac{d}{dx}P_n(x) = \frac{2P_n(x)}{\|P_n\|^2} + \frac{2P_{n-2}(x)}{\|P_{n-2}\|^2} + \dots
+                    \end{equation}
+                    and therefore, dividing both sides by the norm $\|P_{n}\| = \sqrt{\frac{2}{2n+1}}$ of $P_{n+1}(x)$, we obtain
+                    \begin{equation}
+                        \frac{d}{dx}\tilde{P}_{n+1}(x) = \sqrt{\frac{2n+3}{2}} \sum_{j=0}^m \sqrt{2(2n-(2j-1))}\tilde{P}_{n-2j}(x)
+                        \label{recurrent1}
+                    \end{equation}
+                    where $\tilde{P}_n$ is the $n^{\text{th}}$ order normalized Legendre polynomial, and $m = \lfloor \frac{n}{2} \rfloor$. Using (\ref{recurrent1}), we can define a $N\times 2N$ matrix $D_N$ which takes the concatenation of the vectors
+                    \begin{equation}
+                        [f_1] = 
+                        \begin{pmatrix}
+                            a_{0,0} \\ a_{1,0} \\ a_{0,1} \\ a_{2,0} \\ a_{1,1} \\ \vdots \\ a_{1, n-1} \\ a_{1, n} \\ a_{0,n}
+                        \end{pmatrix}
+                        \qquad \qquad
+                        [f_2] = 
+                        \begin{pmatrix}
+                            b_{0,0} \\ b_{1,0} \\ b_{0,1} \\ b_{2,0} \\ b_{1,1} \\ \vdots \\ b_{1, n-1} \\ b_{1, n} \\ b_{0,n}
+                        \end{pmatrix}
+                    \end{equation}
+                    of an expansion of a vector field $\vec{f}(\vec{x}) = \begin{pmatrix} f_1(\vec{x}) \\ f_2(\vec{x}) \end{pmatrix}$ the form (\ref{expansion}) to the coefficients of the exapansion of the divergence
+                    \begin{equation}
+                        \vec{\nabla}\, \vec{f} = \frac{\partial f_1}{\partial x} + \frac{\partial f_2}{\partial y}
+                    \end{equation}
+                    of the vector field $\vec{f}$. In particular,
+                    \begin{equation}
+                        D_N\begin{pmatrix} [f_1] \\ [f_2] \end{pmatrix} = [\vec{\nabla}\, \vec{f}]
+                    \end{equation}
+                    
+                    
+                    
 
 
 

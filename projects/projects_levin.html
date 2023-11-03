@@ -278,15 +278,23 @@
                     \end{equation}
                     of an expansion of a vector field $\vec{f}(\vec{x}) = \begin{pmatrix} f_1(\vec{x}) \\ f_2(\vec{x}) \end{pmatrix}$ the form (\ref{expansion}) to the coefficients of the exapansion of the divergence
                     \begin{equation}
-                        \vec{\nabla}\, \vec{f} = \frac{\partial f_1}{\partial x} + \frac{\partial f_2}{\partial y}
+                        \vec{\nabla}\cdot \vec{f} = \frac{\partial f_1}{\partial x} + \frac{\partial f_2}{\partial y}
                     \end{equation}
                     of the vector field $\vec{f}$. In particular,
                     \begin{equation}
-                        D_N\begin{pmatrix} [f_1] \\ [f_2] \end{pmatrix} = [\vec{\nabla}\, \vec{f}]
+                        D_N\begin{pmatrix} [f_1] \\ [f_2] \end{pmatrix} = [\vec{\nabla}\cdot \vec{f}]
                     \end{equation}
                     
                     
-                    
+                    <h3>The Levin Equation <hr></h3>
+
+                    We wish to evaluate integrals of the form (\ref{integral1}), and to do so, we first search for a vector field $\vec{p}(\vec{x}) = \begin{pmatrix} p_1(\vec{x}) \\ p_2(\vec{x}) \end{pmatrix}$ such that
+
+                    \begin{equation}
+                        \vec{\nabla} \cdot \left(\vec{p}(\vec{x})\cdot \exp(i\vec{\omega} \, \vec{g}(\vec{x}))\right) = f(\vec{x})\,\exp(i\vec{\omega}\, \vec{g}(\vec{x}))
+                        \label{levin1}
+                    \end{equation}
+                    for then a simple application of the divergence rule will allow us to utilize the one-dimensional Levin method to integrate over the boundary of the domain, $\partial R$.
 
 
 

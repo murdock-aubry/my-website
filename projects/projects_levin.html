@@ -284,6 +284,33 @@
                     \begin{equation}
                         D_N\begin{pmatrix} [f_1] \\ [f_2] \end{pmatrix} = [\vec{\nabla}\cdot \vec{f}]
                     \end{equation}
+
+                    Suppose we are given the coefficients of an expansion of the form (\ref{expansion}) for some function $f(x, y)$. Then we can compute the value of $f$ at the points of a quadrature $\{(x_i, y_i)\}_{i=1}^k$ via the $k\times N$ matrix
+                    \begin{equation}
+                        \begin{pmatrix} 
+                            f(x_1, y_1) \\ f(x_2, y_2) \\ \vdots \\ f(x_{n-1}, y_{n-1}) \\  f(x_n, y_n) 
+                        \end{pmatrix}
+                        = 
+                        \underbrace{\begin{pmatrix} 
+                            \tilde{P}_0(x_1) \tilde{P}_0(y_1) & \tilde{P}_1(x_1) \tilde{P}_0(y_1) & \tilde{P}_0(x_1) \tilde{P}_1(y_1) & \dots & \tilde{P}_0(x_1) \tilde{P}_n(y_1) \\ 
+                            
+                            \tilde{P}_0(x_2) \tilde{P}_0(y_2) & \tilde{P}_1(x_2) \tilde{P}_0(y_2) & \tilde{P}_0(x_2) \tilde{P}_1(y_2) & \dots & \tilde{P}_0(x_2) \tilde{P}_n(y_2) \\ 
+                            
+                            \vdots & \vdots & \vdots & \ddots & \ddots & \vdots\\ 
+                            
+                            \tilde{P}_0(x_k) \tilde{P}_0(y_k) & \tilde{P}_1(x_k) \tilde{P}_0(y_k) & \tilde{P}_0(x_k) \tilde{P}_1(y_k) & \dots & \tilde{P}_0(x_k) \tilde{P}_n(y_k) 
+                        \end{pmatrix}}_{A_{\text{eval}}}
+
+                        \begin{pmatrix}
+                            a_{0,0} \\ a_{1,0} \\ a_{0,1} \\ a_{2,0} \\ a_{1,1} \\ \vdots \\ a_{1, n-1} \\ a_{1, n} \\ a_{0,n}
+                        \end{pmatrix}
+                    \end{equation}
+                    In general, the matrix $A_{\text{eval}}$ can be utilized to evaluate a given expansion on any set of points in the plane. Inverting this matrix will allow for evaluation of the expansion coefficients provided the values of the function $f$ at the quadrature nodes. In particular, we set 
+                    \begin{equation}
+                        A_{\text{coef}} = A_{\text{eval}}^{-1}
+                        \label{coefmat}
+                    \end{equation}
+                    to be the $N\times k$ matrix which brings values to coefficients. Since the quadrature $\{(x_i, y_i)\}_{i=1}^n$ need not be of length $N$ (the number of coefficients), we really mean the pseudoinverse in (\ref{coefmat}).
                     
                     
                     <h3>The Levin Equation <hr></h3>
@@ -291,12 +318,52 @@
                     We wish to evaluate integrals of the form (\ref{integral1}), and to do so, we first search for a vector field $\vec{p}(\vec{x}) = \begin{pmatrix} p_1(\vec{x}) \\ p_2(\vec{x}) \end{pmatrix}$ such that
 
                     \begin{equation}
-                        \vec{\nabla} \cdot \left(\vec{p}(\vec{x})\cdot \exp(i\vec{\omega} \, \vec{g}(\vec{x}))\right) = f(\vec{x})\,\exp(i\vec{\omega}\, \vec{g}(\vec{x}))
+                        \vec{\nabla} \cdot \left(\vec{p}(\vec{x})\, \exp(i\vec{\omega} \, \vec{g}(\vec{x}))\right) = f(\vec{x})\,\exp(i\vec{\omega}\, \vec{g}(\vec{x}))
                         \label{levin1}
                     \end{equation}
-                    for then a simple application of the divergence rule will allow us to utilize the one-dimensional Levin method to integrate over the boundary of the domain, $\partial R$.
+                    for then a simple application of the divergence rule will allow us to utilize the one-dimensional Levin method to integrate over the boundary of the domain, $\partial R$. Since the exponential survives differentiation, expanding the left hand side of (\ref{levin1}), we obtain
+                    \begin{equation}
+                        f(\vec{x}) = \vec{\nabla} \cdot \vec{p}(\vec{x}) + i\vec{\omega}\, D\vec{g}(\vec{x})\,\vec{p}(\vec{x}).
+                        \label{levin2}
+                    \end{equation}
+                    This equation is discretizable and hence solvable for $\vec{p}$. In particular, provided the coefficients of the expansion of the functions $f$ and $g$, we can solve explicitely for the coefficients of the functions $p_1$ and $p_2$.\\[0.20cm]
 
+                    If we obtain the coefficients of the functions governing each component of the vector field $\vec{p}$ which satisfies (\ref{levin2}), then we can compute the values of $\vec{p}$ on $\partial R$ which can then be used to evaluate (\ref{integral1}) using the one-dimensional Levin method. Since the matrix $D_N$ provides the expansion coefficients of the divergence of a vector field, the only term left to discretize in (\ref{levin2}) is 
+                    \begin{equation}
+                        i\vec{\omega}\, D\vec{g}(\vec{x})\,\vec{p}(\vec{x})
+                        \label{levin3}
+                    \end{equation}
+                    Since coefficients $\to$ coefficients vector-matrix multiplication will result in incorrect terms, we must first map the coefficients of the vector field expansion to it's vector values on some quadrature on the domain of interest using $A_{\text{eval}}$ in each component $p_1, p_2$. After evaluating $D\vec{g}$ on this quadrature, we obtain the vector values of $D\vec{g} \, \vec{p}$ on said quadrature. Applying $A_{\text{coefs}}$ to each component of the resulting vector field and scaling each component by $i\omega_1, i\omega_2$ respectively, we obtain the scaled coefficients of the expansion of the function $i\omega \, D\vec{g}\, \vec{p}$. In particular, the matrix
+                    \begin{equation}
+                        i\begin{pmatrix} \text{diag}_N\omega_1 & \text{diag}_N\omega_2 \end{pmatrix} 
 
+                        \begin{pmatrix} A_{\text{coefs}} & 0_{N,k} \\ 0_{N,k} & A_{\text{coefs}} \end{pmatrix} 
+
+                        \begin{pmatrix} \text{diag}_k\left(\left\{\frac{\partial g_1}{\partial x}\right\}\right) & \text{diag}_k\left(\left\{\frac{\partial g_1}{\partial y}\right\}\right)\\ \text{diag}_k\left(\left\{\frac{\partial g_2}{\partial x}\right\}\right) & \text{diag}_k\left(\left\{\frac{\partial g_2}{\partial y}\right\}\right)\end{pmatrix} 
+                        
+                        \begin{pmatrix} A_{\text{eval}} & 0_{k,N} \\ 0_{k,N} & A_{\text{eval}} \end{pmatrix}
+                    \end{equation}
+                    discretizes (\ref{levin3}). Here, we have used the notation
+                    \begin{equation}
+                        \{f\} = \begin{pmatrix} f(x_1, y_1) \\ \vdots \\ f(x_k, y_k) \end{pmatrix}
+                    \end{equation}
+                    
+                    Therefore, we obtain the following discretized system representing (\ref{levin1})
+                    \begin{equation}
+                        [f] = A\begin{pmatrix} [p_1] \\ [p_2] \end{pmatrix}
+                    \end{equation}
+                    where 
+                    \begin{equation}
+                        A = \underbrace{D_N}_{\sim \vec{\nabla}\cdot} + \underbrace{i\begin{pmatrix} \text{diag}_N\omega_1 & \text{diag}_N\omega_2 \end{pmatrix} 
+
+                        \begin{pmatrix} A_{\text{coefs}} & 0_{N,k} \\ 0_{N,k} & A_{\text{coefs}} \end{pmatrix} 
+
+                        \begin{pmatrix} \text{diag}_k\left(\left\{\frac{\partial g_1}{\partial x}\right\}\right) & \text{diag}_k\left(\left\{\frac{\partial g_1}{\partial y}\right\}\right)\\ \text{diag}_k\left(\left\{\frac{\partial g_2}{\partial x}\right\}\right) & \text{diag}_k\left(\left\{\frac{\partial g_2}{\partial y}\right\}\right)\end{pmatrix}
+
+                        \begin{pmatrix} A_{\text{eval}} & 0_{k,N} \\ 0_{k,N} & A_{\text{eval}} \end{pmatrix}}_{\sim i\vec{\omega} \, D\vec{g}}
+                    \end{equation}
+                    
+                   
 
                     <!-- <h3>Fortran Implementation <hr></h3>
 

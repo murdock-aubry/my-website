@@ -196,16 +196,50 @@
                     
                     <br><br>
 
-                    <h3> Methodology </h3>
+                    Check out the GitHub repository for this project 
+                    <a style="color: blue;" href="https://github.com/murdock-aubry/gear-gen">
+                        here.
+                    </a>
 
-                    After scraping 11,000 data samples from <a href="https://khkgears.net/new/"> here</a> I am now in the fine tuning stage. Check back soon for more progress!
+                    <h3> So far </h3>
+                    
+                    After scraping 11,000 data samples from <a style="color: blue;"href="https://khkgears.net/new/"> KHK Gears</a> I am now in the fine tuning stage.
+                    
+                    <br> <br>
+
+                    Each gear in the KHK collection contains quantitative specifications about its geometric construction; information which nearly uniquely determines each gear. Along with this information is a downloadable DXF document of the associated gear. I scraped all of this information utilizing the <a style="color: blue;"href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/"> BeautifulSoup</a> and <a style="color: blue;"href="https://www.selenium.dev/documentation/"> Selenium</a> libraries. 
+
+                    <br><br>
+
+                    <b>One massive (literally) issue:</b> The DXF files contain a massive amount of text -- a corpus long enough to exceed the context window of open source models that I (my hardware) am capable of running, let alone training. 
+
+                    <br><br>
+
+                    <b>Upshot:</b> Most of the information in the DXF files are common between different gears and/or could be easily reconstructed algorithmically following generation of the unique information; the actual gear. 
+
+                    <br><br>
+
+                    <b>Solution:</b> I automated the scraping of all the DXF files in my dataset so that the resulting data contained only the essential information. See the following image as an example for a two-dimensional profile:
+
+                    <br><br>
+                    
+                    <div class="image">
+                        <img src="dxf-compare.png" alt="" width="100%"/>
+                    </div>
+
+                    <br><br>
+
+                    Each DXF file in the original dataset contained, on average, 2665 lines. This was reduced to an average of 965 lines; a compression rate of nearly 65%. This is computed explicitly in the 
+                    <a style="color: blue;" href="https://github.com/murdock-aubry/gear-gen">
+                        Github Repository.
+                    </a>
+
+                    <br><br>
+                    
+                    Check back soon for more progress!
                     
                     <br><br>
 
-                    Check out the GitHub repository for this project 
-                    <a href="https://github.com/murdock-aubry/gear-gen">
-                        here.
-                    </a>
 
                 </div>
             </div>

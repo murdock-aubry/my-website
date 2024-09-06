@@ -169,17 +169,6 @@
        
         </div>
 
-        
-
-        <!--
-  Created by Victor Ivrii on 2018-09-01.
-  Copyright (c) 2018 University of Toronto. All rights reserved.
-    -->
-
-
-<!-- <link href="http://www.math.toronto.edu/courses/mat244h1/20181/markdown.css" rel="stylesheet"></link> -->
-
-
 
 
 <div class = "width2">
@@ -191,28 +180,103 @@
 
             <br>
 
+            <h1> TL;DR</h1>
+
+            This project revolved around the development and training of a Graph Neural Network (GNN) used for the detection of tau ($\tau$) neutrinos -- one of the three flavours of neutrinos. See <a href="https://en.wikipedia.org/wiki/Flavour_(particle_physics)" style="color:rgb(48, 59, 211)">
+                here
+            </a>
+            for an introduction to the three flavor paradigm.
+
+            <br><br>
+
+            The goal was to have the network distinguish between the three flavours of particles, and also provide sematic information of the decay products. 
+
+
+            <br><br>
+
+            We began by training and testing the unmodified <a href="https://arxiv.org/abs/2403.11872" style="color:rgb(48, 59, 211)"> NuGraph2 </a> GNN used for neutrino physics event reconstruction. This model is reported to perform extremely positively, provided a large and low variance dataset to be used for a very particular task.
+
+            <br><br>
+
+            In our implementation, however, the model performance was significantly reduced due to our heavily imbalanced an high variance dataset. In particular, the model was unable to distinguish between tau neutrinos and any other decay event.
+
+            <br><br>
+
+            To combat this, I implement a modified, weighted loss function which penalizes the model more strongly for mis-labelling tau neutrino data. Moreover, I modified the sampling techniques in order to over sample the tau data, increasing the model's exposure frequency to the decay events of interest. Finally, to increase the expressivity of the model, I increased it's depth from one fully connected layer to two. This allowed the model to gain a more nuanced understanding of the sematic behaviour of the tau neutrino decay products. 
+
+            <br><br> 
+
+            My modifications <b>significantly</b> improved the model's ability to correctly classify tau neutrinos -- in particular, we saw a 20% increase in true positive classification of tau neutrinos, while maintaining or increasing the performance on all other classifications. See the comparison between precision matrices bellow:
+
+            <br><br>
+            <div class="image">
+                <img src="precision_matrix.png" alt="" width="100%"/>
+            </div>
+            <br>
+
+            The quantities of main interest in the above comparison are the discrepancies between the anti-diagonal values, particularly the cc_nutau entry. 
+
+            <br><br> 
+
+            In addition to increasing the performance of the model, my contributions resulted in a loss plateau after many fewer training iterations. See the loss curves both before and after the architectural modifications:
+
+            <br><br>
+            <div class="image">
+                <img src="loss_event.png" alt="" width="100%"/>
+            </div>
+            <br>
+
+
+
             <h1> DUNE Physics Project</h1>
 
-            The Deep Underground Neutrino Experiment (DUNE) is an international experiment for neutrino physics.
+            The Deep Underground Neutrino Experiment (DUNE) is an international experiment for exploration of neutrino physics. Central to DUNE are a high-intensity neutrino beam, a near detector providing initial energy spectra measurements, and a far detector for detailed interaction reconstruction, located 1300 km away underground. A schematic diagram highlighting the main hardware components of the experiment is included bellow. 
 
+            <br><br>
             <div class="image">
                 <img src="DUNE_system.png" alt="" width="100%"/>
             </div>
-
-            <h2> Introductory Report </h2>
-
             <br>
 
+            The far detector comprises four liquid argon time projection chamber modules, facilitating precise event reconstruction, with two modules utilizing single-phase technology and one utilizing dual-phase, while the fourth remains under development. The near detector serves as the control, minimizing systematic errors and uncertainties in neutrino interaction reconstruction, crucial for accurately predicting far detector observations.
+
+            <br><br>
+
+            See <a href="tau_neutrino_intro.pdf" style="color:rgb(48, 59, 211)">
+                here
+            </a>
+            for an in-depth overview of the DUNE physics collaboration. 
+
+            <h1> Introductory Report </h1>
+
             See
-            <a href="DUNE_report.pdf" style="color:rgb(48, 59, 211)">
+            <a href="intro_report.pdf" style="color:rgb(48, 59, 211)">
                 here
             </a>
             for a quick introduction to neutrino physics, specifically focused on the three-flavour paradigm, as well as an introduction to the DUNE physics program.
 
+            <h1> Network Modification Proposal </h1>
 
-            <h2> Network Training </h2>
+            See <a href="proposal_presentation.pdf" style="color:rgb(48, 59, 211)">
+                here
+            </a>
+            for the slides where I propose the network modifications to the DUNE and CERN teams.
+
+
+            <h1> Final Report </h1>
+
+            See <a href="final_report.pdf" style="color:rgb(48, 59, 211)">
+                here
+            </a>
+
+            for the final report on the results and findings of this eight-month research project. See <a href="final_report.pdf" style="color:rgb(48, 59, 211)">
+                here
+            </a>
+            for the slides of the final presentation to my supervisor and her team.
             
-            We are currently in the process of training the deep learning network which will eventually be used to detect tau neutrinos in the data collected from DUNE.
+
+
+            <br><br><br>
 
         </div>
     </div>

@@ -190,60 +190,93 @@
 
                 <div class = "text" style = "color: #ffffff;">
 
-                    <h2> Generative Gear Design </h2>
+                    <h1 style="text-align: center; font-size: 32px; margin-bottom: 20px;"> Generative Gear Design </h1>
 
                     <hr>
-                    
-                    This is an ongoing personal project. The goal is to fine-tune an open source large language model which is capable of automatically generating a DXF file of a gear.
-                    
-                    <br><br>
 
-                    Check out the GitHub repository for this project 
-                    <a style="color: rgb(140, 39, 255);" href="https://github.com/murdock-aubry/gear-gen">
-                        here.
-                    </a>
+                    <section style="margin: 40px auto; max-width: 800px; font-size: 18px; line-height: 1.6; color: #ffffff;">
 
-                    <h3> So far </h3>
+                        <p>This is an ongoing personal project. The goal is to fine-tune an open-source large language model capable of automatically generating a DXF file of a gear.</p>
+
+                        <p>After scraping 11,000 data samples from <a style="color: rgb(140, 39, 255);" href="https://khkgears.net/new/">KHK Gears</a>, I am now in the fine-tuning stage.</p>
+
+                    </section>
+
+
+                    <h1 style="text-align: center; font-size: 32px; margin-bottom: 20px;"> Dataset </h1>
 
                     <hr>
-                    
-                    After scraping 11,000 data samples from <a style="color: rgb(140, 39, 255);"href="https://khkgears.net/new/"> KHK Gears</a> I am now in the fine tuning stage.
-                    
-                    <br> <br>
 
-                    Each gear in the KHK collection contains quantitative specifications about its geometric construction; information which nearly uniquely determines each gear. Along with this information is a downloadable DXF document of the associated gear. I scraped all of this information utilizing the <a style="color: rgb(140, 39, 255);"href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/"> BeautifulSoup</a> and <a style="color: rgb(140, 39, 255);"href="https://www.selenium.dev/documentation/"> Selenium</a> libraries. 
-
-                    <br><br>
-
-                    <b>One massive (literally) issue:</b> The DXF files contain a massive amount of text -- a corpus long enough to exceed the context window of open source models that I (my hardware) am capable of running, let alone training. 
-
-                    <br><br>
-
-                    <b>Upshot:</b> Most of the information in the DXF files are common between different gears and/or could be easily reconstructed algorithmically following generation of the unique information; the actual gear. 
-
-                    <br><br>
-
-                    <b>Solution:</b> I automated the scraping of all the DXF files in my dataset so that the resulting data contained only the essential information. See the following image as an example for a two-dimensional profile:
-
-                    <br><br>
-                    
-                    <div class="image">
-                        <img src="dxf-compare.png" alt="" width="100%"/>
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <a href="https://github.com/murdock-aubry/gear-gen" style="color: rgb(255, 255, 255); font-size: 20px; background-color:rgb(140, 39, 255); padding: 10px 20px; border-radius: 20px; text-decoration: none; display: inline-block; margin-right: 40px;">GitHub</a>
+                        <a href="https://huggingface.co/datasets/murdockaubry/dxf-gears-prompted" style="color: rgb(255, 255, 255); font-size: 20px; background-color:rgb(140, 39, 255); padding: 10px 20px; border-radius: 20px; text-decoration: none; display: inline-block; margin-right: 40px;">🤗 Prompted</a>
+                        <a href="https://huggingface.co/datasets/murdockaubry/dxf-gears-unstructured" style="color: rgb(255, 255, 255); font-size: 20px; background-color:rgb(140, 39, 255); padding: 10px 20px; border-radius: 20px; text-decoration: none; display: inline-block;">🤗 Unstructured</a>
                     </div>
 
-                    <br><br>
+                    <section style="margin: 40px auto; max-width: 800px; font-size: 18px; line-height: 1.6; color: #ffffff;">
 
-                    Each DXF file in the original dataset contained, on average, 2665 lines. This was reduced to an average of 965 lines; a compression rate of nearly 65%. This is computed explicitly in the 
-                    <a style="color: rgb(140, 39, 255);" href="https://github.com/murdock-aubry/gear-gen">
-                        Github Repository.
-                    </a>
+                        
+                        To the best of my knowledge, this is the <span style="color: rgb(140, 39, 255);">first</span> DXF dataset on Huggingface.
 
-                    <br><br>
-                    
-                    Check back soon for more progress!
-                    
-                    <br><br>
+                        <br> 
 
+                        <div style="background-color:rgb(35,35,35); padding: 20px; border-left: 5px solid rgb(140, 39, 255); margin: 20px 0;">
+                            <p><b style="color: rgb(140, 39, 255);">Prompted:</b> Structured input-output data designed to train a language model.</p>
+                            <p><b style="color: rgb(140, 39, 255);">Unstructured:</b> Dictionary-DXF pairs where the dictionary items quantify the aspects of the gear.</p>
+                        </div>
+
+
+                        <div class="image" style="text-align: center; margin: 20px 0;">
+                            <img src="dxf-compare.png" alt="Comparison of DXF Files" style="width: 100%; border: 1px solid #ddd; border-radius: 5px;">
+                        </div>
+
+                        <p>Each gear in the KHK collection contains quantitative specifications about its geometric construction—information that nearly uniquely determines each gear. Along with this information is a downloadable DXF document of the associated gear. I scraped all of this data using the 
+                            <a style="color: rgb(140, 39, 255);" href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">BeautifulSoup</a> 
+                            and 
+                            <a style="color: rgb(140, 39, 255);" href="https://www.selenium.dev/documentation/">Selenium</a> libraries.
+                        </p>
+
+                        <div style="background-color: rgb(35, 35, 35); padding: 20px; border-left: 5px solid rgb(140, 39, 255); margin: 20px 0;">
+                            <p><b>One massive (literally) issue:</b> The DXF files contain a massive amount of text—a corpus long enough to exceed the context window of open-source models that I (and my hardware) can run, let alone train.</p>
+                        </div>
+
+                        <div style="background-color: rgb(35, 35, 35); padding: 20px; border-left: 5px solid rgb(140, 39, 255); margin: 20px 0;">
+                            <p><b>Upshot:</b> Most of the information in the DXF files is common across gears and/or could be easily reconstructed algorithmically after generating the unique gear-specific details.</p>
+                        </div>
+
+                        <div style="background-color: rgb(35, 35, 35); padding: 20px; border-left: 5px solid rgb(140, 39, 255); margin: 20px 0;">
+                            <p><b>Solution:</b> I automated the scraping of all the DXF files in my dataset, retaining only the essential information.</p>
+                        </div>
+
+                        
+
+                        <p>Each DXF file in the original dataset contained, on average, 2665 lines. This was reduced to an average of 965 lines, achieving a compression rate of nearly 65%.
+
+
+                        
+                        
+                        <h1 style="text-align: center; font-size: 32px; margin-bottom: 20px;"> Model Training </h1>
+                        <hr>
+
+                        There are several training methodologies that I have attempted:
+                        
+                        <div style="background-color:rgb(35,35,35); padding: 20px; border-left: 5px solid rgb(140, 39, 255); margin: 20px 0;">
+                            <p><b style="color: rgb(140, 39, 255);">Fine-tuning:</b> Training an existing language model to produce DXF code.</p>
+                            <p><b style="color: rgb(140, 39, 255);">Training from Scratch:</b> Exploiting a truncated vocabulary and structured outputs to train a small autogrressive transformer.</p>
+                        </div>
+
+                        Unfortunately, I am GPU poor; just severely computationally limited. Sacrificing context window, model size and batch size are necessary in order for back-propagation to be feasible. These sacrifices result in truly abysmal test performance.
+
+                        <br><br>
+
+                        I am continuing to explore methods for training a generative model which can generalize beyond the gear catalog. Seq2Seq models are a feasible option.
+
+
+
+
+                        <p style="text-align: center; font-size: 18px; font-style: italic; color: rgb(140, 39, 255); margin-top: 40px;">Check back soon for more progress!</p>
+
+                    </section>
 
                 </div>
             </div>

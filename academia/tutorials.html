@@ -223,32 +223,41 @@
         </div>
     
 
-
-        </body>
-
-        <div class = "width2" style = "color:#ffffff">
-
-            <br><br>
-
-            <h2>MAT244 <hr></h2>
-
-            <p>
-                Tutorial 1: <a style = "color:rgb(255, 255, 255);" href="https://github.com/murdock-aubry">Questions</a> -- <a style = "color:rgb(255, 255, 255);" href="https://github.com/murdock-aubry">Solutions</a>
-
-                <br><br><br>
-
-                Tutorial 2: <a style = "color:rgb(255, 255, 255);" href="https://github.com/murdock-aubry">Questions</a> -- <a style = "color:rgb(255, 255, 255);" href="https://github.com/murdock-aubry">Solutions</a>
-
-                <br><br><br>
-
-                Tutorial 3: <a style = "color:rgb(255, 255, 255);" href="https://github.com/murdock-aubry">Questions</a> -- <a style = "color:rgb(255, 255, 255);" href="https://github.com/murdock-aubry">Solutions</a>
-
-            </p>
-            
-
-        </div>
-
-        </body> 
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Academic Paper Tree</title>
+                <style>
+                    body { font-family: Arial, sans-serif; text-align: center; }
+                    .container { display: flex; justify-content: center; align-items: center; height: 100vh; }
+                    .circle { 
+                        width: 100px; 
+                        height: 100px; 
+                        border-radius: 50%; 
+                        display: flex; 
+                        justify-content: center; 
+                        align-items: center; 
+                        font-weight: bold; 
+                        font-size: 16px; 
+                        color: white; 
+                        cursor: pointer; 
+                        margin: 20px; 
+                    }
+                    .math { background-color: red; }
+                    .physics { background-color: blue; }
+                    .cs { background-color: green; }
+                </style>
+            </head>
+            <body>
+                <h2>Select a Field</h2>
+                <div class="container">
+                    <div class="circle math" onclick="location.href='math.html'">Math</div>
+                    <div class="circle physics" onclick="location.href='physics.html'">Physics</div>
+                    <div class="circle cs" onclick="location.href='cs.html'">CS</div>
+                </div>
+            </body>
+            </html>
 
 
     </html>
